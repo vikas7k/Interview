@@ -16,22 +16,23 @@ namespace Interview
 
         public IEnumerable<T> All()
         {
-            throw new NotImplementedException();
+            return store;
         }
 
         public void Delete(IComparable id)
         {
-            
+            store.RemoveAll(StoreIdMatch(id));
         }
 
         public void Save(T item)
         {
-           
+            store.RemoveAll(StoreIdMatch(item.Id));
+            store.Add(item);
         }
 
         public T FindById(IComparable id)
         {
-            throw new NotImplementedException();
+            return store.Find(StoreIdMatch(id));
         }
 
         private static Predicate<T> StoreIdMatch(IComparable id)

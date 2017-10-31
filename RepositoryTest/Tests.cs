@@ -20,6 +20,17 @@ namespace RepositoryTest
         }
 
         [TestMethod]
+        public void ShouldGetAllItems()
+        {
+            initialItem = new StoreableItem { Id = 1, Name = "initialFirstItem" };
+            repository.Save(initialItem);
+            initialItem = new StoreableItem { Id = 2, Name = "initialSecondItem" };
+            repository.Save(initialItem);
+            var items =  repository.All();
+            Assert.AreEqual(items.Count(), 2);
+        }
+
+        [TestMethod]
         public void ShouldSaveItem()
         {
             initialItem = new StoreableItem { Id = 1, Name = "initialItem" };
